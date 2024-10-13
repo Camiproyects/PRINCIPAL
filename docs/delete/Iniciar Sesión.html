@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="Iniciar Sesión.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js" defer></script>
+    <title>Iniciar Sesión</title>
+</head>
+<body>
+    <header>
+        <h1>Inicio De Sesión</h1>
+    </header>
+    <section id="Formulario">
+        <form id="InicioDeSesión">
+            <div>
+                <input class="caja" type="text" name="Correo" id="Correo" placeholder="Ingresa Tu Correo" required>
+            </div>
+            <div>
+                <input class="caja" type="text" name="Contraseña" id="Contraseña" placeholder="Ingresa Tu Contraseña" required>
+            </div>
+            <div class="Recordar">
+                <label><input type="checkbox" id="Recordar" name="session" value="Recordar"> Recordar Inicio De Sesión</label>
+            </div>
+            <button type="button" onclick="InicioDeUsuario()">Comprobar</button>
+            <p>No Tienes Un Usuario??</p>
+            <div class="button">
+                <button class="button" type="submit" onclick="RegistrarUsuario()">Crear Usuario</button>
+            </div>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2024 , <a href="#">Términos y condiciones</a></p>
+    </footer>
+</body>
+</html>

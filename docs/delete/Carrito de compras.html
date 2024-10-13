@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        .remove {
+            color: red;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Compras</h1>
+    <input type="text" id="itemInput" placeholder="Agregar un nuevo ítem">
+    <button onclick="addItem()">Agregar</button>
+    <ul id="shoppingList"></ul>
+
+    <script>
+        // Array para almacenar los ítems de la lista de compras
+        const shoppingList = [];
+
+        // Función para agregar un ítem a la lista
+        function addItem() {
+            const itemInput = document.getElementById('itemInput');
+            const itemText = itemInput.value.trim();
+
+            // Validar entrada
+            if (itemText === '') {
+                alert('Por favor, ingrese un ítem.');
+                return;
+            }
+
+            // Agregar ítem al array y limpiar el campo de entrada
+            shoppingList.push(itemText);
+            itemInput.value = '';
+            
+            // Mostrar la lista actualizada
+            displayList();
+        }
+
+        // Función para eliminar un ítem de la lista
+        function removeItem(index) {
+            shoppingList.splice(index, 1);
+            displayList();
+        }
+
+        // Función para mostrar la lista de compras en la página
+        function displayList() {
+            const listElement = document.getElementById('shoppingList');
+            listElement.innerHTML = '';
+
+            // Crear una lista de ítems
+            shoppingList.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `${item} <span class="remove" onclick="removeItem(${index})">Eliminar</span>`;
+                listElement.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>

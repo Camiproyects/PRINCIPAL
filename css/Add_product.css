@@ -1,0 +1,35 @@
+body {
+    background-image: url('gratis-png-cuatro-mujeres-visten-modelo-de-dibujo-modelo-de-dibujo.png'); 
+    background-size: cover; 
+    background-position: center; 
+    font-family: 'Baguet Script', cursive;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+}
+header {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+nav {
+    background-color: #007bff;
+    padding: 10px;
+    text-align: center;
+}
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav a:hover {
+    text-decoration: underline;
+    color: #ffc107;
+}
+.table {
+    background-color: #f8f9fa; /* Color gris claro */
+}
+#agrebot {
+    margin-bottom: 20px;
+}

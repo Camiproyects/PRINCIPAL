@@ -1,0 +1,3 @@
+<?php
+#Coneccion a la base de datos ECT...
+?>
