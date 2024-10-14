@@ -1,12 +1,12 @@
 <?php
 // Requerir controladores según las rutas disponibles
-require_once 'views.Landing.php';
-require_once 'views.Login.php';
-require_once 'views.RegisterUser.php';
-require_once 'views.Admin.php';
-require_once 'views.Submit.php';
-require_once 'views.RestorePassword.php';
-require_once 'views.AgregarProducto.php';
+require_once 'Const.Landing.php';
+require_once 'Const.Login.php';
+require_once 'Const.RegisterUser.php';
+require_once 'Const.Admin.php';
+require_once 'Const.Submit.php';
+require_once 'Const.RestorePassword.php';
+require_once 'Const.Add_product.php';
 
 // Obtener la ruta desde la URL
 $url = isset($_GET['url']) ? $_GET['url'] : 'landing';
