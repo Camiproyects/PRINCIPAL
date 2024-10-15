@@ -1,19 +1,18 @@
 // Seleccionamos los elementos relevantes
 const cartButton = document.getElementById('cart-button');
 const cart = document.getElementById('cart');
-const closeCart = document.getElementById('closeCart');
 const carrito = document.getElementById('carrito');
 const total = document.getElementById('total');
 const btnVaciar = document.getElementById('btnVaciar');
 
 // Función para abrir el carrito
 cartButton.addEventListener('click', () => {
-    cart.classList.add('open');
+    cart.classList.add('active');
 });
 
 // Función para cerrar el carrito
-closeCart.addEventListener('click', () => {
-    cart.classList.remove('open');
+document.getElementById('closeCart')?.addEventListener('click', () => {
+    cart.classList.remove('active');
 });
 
 // Función para vaciar el carrito
@@ -22,8 +21,15 @@ btnVaciar.addEventListener('click', () => {
     total.textContent = '0.00'; // Reinicia el total a 0
 });
 
-// Función para agregar productos al carrito (ejemplo)
+// Función para agregar productos al carrito
 function agregarAlCarrito(producto, cantidad, precio) {
+    if (!isLoggedIn) {
+        // Si el usuario no está logueado, lo redirigimos a la página de login
+        window.location.href = 'login.php';
+        return;
+    }
+
+    // Crear la fila del producto
     const row = document.createElement('tr');
     row.innerHTML = `
         <td>${producto}</td>

@@ -59,7 +59,7 @@ nav ul li:hover {
 /* Pestaña del carrito */
 .cart {
     position: fixed;
-    left: -300px; /* Comienza fuera de la pantalla */
+    left: -300px; /* Comienza fuera de la pantalla a la izquierda */
     top: 60px; /* Espacio para el header */
     width: 300px;
     background-color: #fff;
@@ -71,19 +71,31 @@ nav ul li:hover {
 }
 
 .cart.active {
-    left: 0; /* Muestra la pestaña */
+    left: 0; /* Muestra la pestaña desde la izquierda */
 }
 
 /* Botón del carrito */
 .cart-button {
     position: fixed;
     top: 20px;
-    right: 20px;
+    left: 20px; /* Mueve el botón del carrito al lado izquierdo */
     background-color: #7b1dd3;
     color: white;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    z-index: 1001; /* Asegura que el botón esté por encima del carrito */
+}
+
+/* Botón de cerrar carrito */
+#closeCart {
+    background-color: red;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: inline-block;
 }
 
 /* Main */
@@ -167,4 +179,3 @@ footer {
 footer a {
     color: white;
 }
-    

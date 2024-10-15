@@ -1,108 +1,75 @@
+<?php
+session_start(); // Iniciar sesión
+include 'DataBase.php'; // Incluir el archivo con la clase DataBase
+
+// Verifica si el usuario ha iniciado sesión
+$isLoggedIn = isset($_SESSION['usuario']);
+
+try {
+    // Conexión a la base de datos usando la clase DataBase
+    $db = DataBase::connection();
+
+    // Consulta para obtener todos los productos
+    $sql = "SELECT nombre, precio, stock FROM producto";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+
+    // Obtener los resultados
+    $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    echo "Error en la consulta: " . $e->getMessage();
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de Ropa</title>
-    <link rel="stylesheet" href="css/index.css">
+    <title>Tienda de Productos</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Tienda de Ropa</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li>
-                    <a href="#">Hombres</a>
-                    <ul>
-                        <li><a href="#">Camisas</a></li>
-                        <li><a href="#">Pantalones</a></li>
-                        <li><a href="#">Accesorios</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Mujeres</a>
-                    <ul>
-                        <li><a href="#">Vestidos</a></li>
-                        <li><a href="#">Blusas</a></li>
-                        <li><a href="#">Accesorios</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Niños</a>
-                    <ul>
-                        <li><a href="#">Ropa</a></li>
-                        <li><a href="#">Juguetes</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-        <!-- Botón para abrir el carrito -->
-        <div id="cart-button" class="cart-button" onclick="toggleCart()">
-            🛒 Carrito
-        </div>
-    </header>
+    <h1>Productos Disponibles</h1>
 
-    <main>
-        <section id="productos">
-            <div class="producto">
-                <img src="css/img/camisa women.jpg" alt="Camiseta">
-                <h3>Camiseta</h3>
-                <p>$200.000</p>
-                <button class="button" onclick="return Mostrarformulario()">Comprar</button>
-            </div>
-            <div class="producto">
-                <img src="css/img/camisa women2.jpg" alt="Camiseta">
-                <h3>Camiseta</h3>
-                <p>$180.000</p>
-                <button class="button" onclick="return Mostrarformulario()">Comprar</button>
-            </div>
-            <div class="producto">
-                <img src="css/img/jean.jpg" alt="Jeans">
-                <h3>Jeans</h3>
-                <p>$90.000</p>
-                <button class="button" onclick="return Mostrarformulario()">Comprar</button>
-            </div>
-            <div class="producto">
-                <img src="css/img/jean2.jpg" alt="Jeans">
-                <h3>Jeans</h3>
-                <p>$75.000</p>
-                <button class="button" onclick="return Mostrarformulario()">Comprar</button>
-            </div>
-            <div class="producto">
-                <img src="css/img/jean3.jpg" alt="Jeans">
-                <h3>Jeans</h3>
-                <p>$80.000</p>
-                <button class="button" onclick="return Mostrarformulario()">Comprar</button>
-            </div>
-        </section>
-    </main>
+    <div id="productos">
+        <?php
+        // Verifica si se obtuvieron productos
+        if (count($productos) > 0) {
+            // Mostrar cada producto en un contenedor
+            foreach ($productos as $producto) {
+                echo '<div class="producto">';
+                echo '<h3>' . htmlspecialchars($producto['nombre']) . '</h3>';
+                echo '<p>Precio: $' . htmlspecialchars($producto['precio']) . '</p>';
+                echo '<p>Stock disponible: ' . htmlspecialchars($producto['stock']) . '</p>';
+                echo '<button class="button" onclick="agregarAlCarrito(\'' . $producto['nombre'] . '\', 1, ' . $producto['precio'] . ')">Agregar al Carrito</button>';
+                echo '</div>';
+            }
+        } else {
+            echo "No hay productos disponibles.";
+        }
 
-    <!-- Carrito de Compras como pestaña desplegable -->
-    <aside id="cart" class="cart">
-        <h2>Carrito de Compras</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unitario</th>
-                    <th>Precio Total</th>
-                </tr>
-            </thead>
-            <tbody id="carrito">
-                <!-- Aquí se agregan los productos dinámicamente -->
-            </tbody>
-        </table>
-        <p>Total: $<span id="total">0.00</span></p>
-        <button id="btnVaciar">Vaciar Carrito</button>
-    </aside>
+        // Cerrar la conexión
+        $db = null;
+        ?>
+    </div>
 
-    <footer>
-        <p>&copy; 2024, <a href="#">Términos y condiciones</a></p>
-    </footer>
+    <!-- Incluimos el script para gestionar el carrito -->
+    <script>
+        const isLoggedIn = <?php echo $isLoggedIn ? 'true' : 'false'; ?>;
 
-    <script src="js/index.js"></script>
+        function agregarAlCarrito(producto, cantidad, precio) {
+            if (!isLoggedIn) {
+                // Redirige a la página de login si no hay sesión
+                window.location.href = 'login.php';
+                return;
+            }
+
+            // Lógica para agregar al carrito (esto puede expandirse)
+            console.log(`Agregando ${producto} al carrito. Precio: ${precio}`);
+        }
+    </script>
 </body>
 </html>
