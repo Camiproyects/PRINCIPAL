@@ -1,6 +1,6 @@
 <?php
 require_once 'DataBase.php';
-
+#<echo htmlspecialchars($_SERVER["PHP_SELF"]); ?
 class producto {
     private $conn;
 
