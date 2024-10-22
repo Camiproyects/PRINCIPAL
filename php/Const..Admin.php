@@ -1,5 +1,11 @@
 <?php
+class Admin {
+    public function main() {
+        require_once 'Views.Admin.html';
+}
+}
 require_once 'DataBase.php';  
+
 
 class Producto {
     private $conn;

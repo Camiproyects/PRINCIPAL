@@ -1,46 +1,43 @@
-// Seleccionamos los elementos relevantes
-const cartButton = document.getElementById('cart-button');
-const cart = document.getElementById('cart');
-const carrito = document.getElementById('carrito');
-const total = document.getElementById('total');
-const btnVaciar = document.getElementById('btnVaciar');
+const isLoggedIn = false; // Puedes cambiar esto según tu lógica de sesión
 
-// Función para abrir el carrito
-cartButton.addEventListener('click', () => {
-    cart.classList.add('active');
-});
+// Función para cargar productos
+async function cargarProductos() {
+    const response = await fetch('php/Const.Index.php');
+    const data = await response.json();
 
-// Función para cerrar el carrito
-document.getElementById('closeCart')?.addEventListener('click', () => {
-    cart.classList.remove('active');
-});
-
-// Función para vaciar el carrito
-btnVaciar.addEventListener('click', () => {
-    carrito.innerHTML = ''; // Limpia los productos del carrito
-    total.textContent = '0.00'; // Reinicia el total a 0
-});
-
-// Función para agregar productos al carrito
-function agregarAlCarrito(producto, cantidad, precio) {
-    if (!isLoggedIn) {
-        // Si el usuario no está logueado, lo redirigimos a la página de login
-        window.location.href = 'login.php';
+    const productosDiv = document.getElementById('productos');
+    if (data.error) {
+        productosDiv.innerHTML = data.error;
         return;
     }
 
-    // Crear la fila del producto
-    const row = document.createElement('tr');
-    row.innerHTML = `
-        <td>${producto}</td>
-        <td>${cantidad}</td>
-        <td>${precio}</td>
-        <td>${(cantidad * precio).toFixed(2)}</td>
-    `;
-    carrito.appendChild(row);
+    if (data.productos.length > 0) {
+        data.productos.forEach(producto => {
+            const productoDiv = document.createElement('div');
+            productoDiv.classList.add('producto');
 
-    // Actualizar el total
-    let totalActual = parseFloat(total.textContent);
-    totalActual += cantidad * precio;
-    total.textContent = totalActual.toFixed(2);
+            // Creamos la estructura del producto incluyendo la imagen
+            productoDiv.innerHTML = `
+                <h3>${producto.nombre}</h3>
+                <img src="uploads/${producto.imagen}" alt="${producto.nombre}" style="width:150px; height:150px;">
+                <p>Precio: $${producto.precio}</p>
+                <p>Stock disponible: ${producto.stock}</p>
+                <button class="button" onclick="agregarAlCarrito('${producto.nombre}', 1, ${producto.precio})">Agregar al Carrito</button>
+            `;
+            productosDiv.appendChild(productoDiv);
+        });
+    } else {
+        productosDiv.innerHTML = "No hay productos disponibles.";
+    }
 }
+
+function agregarAlCarrito(producto, cantidad, precio) {
+    if (!isLoggedIn) {
+        window.location.href = 'Views.Login.html';
+        return;
+    }
+    console.log(`Agregando ${producto} al carrito. Precio: ${precio}`);
+}
+
+// Cargar productos al inicio
+cargarProductos();
