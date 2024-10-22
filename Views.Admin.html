@@ -31,6 +31,7 @@
                     <th>Talla</th>
                     <th>Color</th>
                     <th>Stock</th>
+                    <th>Proveedor</th>
                     <th>Proveedor ID</th>
                     <th>Id Categoría</th>
                     <th>Acciones</th>
@@ -48,8 +49,8 @@
                         <td><?php echo $producto['proveedor_id']; ?></td>
                         <td><?php echo $producto['id_categoria']; ?></td>
                         <td>
-                            <a href="editar_produc.php?id_producto=<?php echo $producto['id_producto']; ?>" class="btn btn-primary btn-sm">Editar</a>
-                            <a href="eliminar_produc.php?id_producto=<?php echo $producto['id_producto']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="php/Const.Edit_product.php" class="btn btn-primary btn-sm">Editar</a>
+                            <a href="php/Const.Delete_prduct.php" class="btn btn-danger btn-sm">Eliminar</a>
                         </td>
                     </tr>
                 <?php } ?>
