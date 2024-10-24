@@ -1,43 +1,27 @@
 <?php
-// Requerir controladores según las rutas disponibles
-require_once 'php/Const.index.php';
-require_once 'php/Const.Login.php';
-require_once 'php/Const.Register_User.php';
-require_once 'php/Const.Admin.php';
-require_once 'php/Const.Submit.php';
-require_once 'php/Const.RestorePassword.php';
-require_once 'php/Const.Add_product.php';
+// Start session if needed
+session_start();
 
-// Obtener la ruta desde la URL
-$url = isset($_GET['url']) ? $_GET['url'] : 'landing';
+// Get the requested view from the URL (e.g., index.php?page=login)
+$page = isset($_GET['page']) ? $_GET['page'] : 'index';
 
-// Controlador basado en la ruta
-switch ($url) {
-    case 'landing':
-        $controllerInstance = new Landing();
-        break;
-    case 'login':
-        $controllerInstance = new Login();
-        break;
-    case 'register':
-        $controllerInstance = new RegisterUser();
-        break;
-    case 'admin':
-        $controllerInstance = new Admin();
-        break;
-    case 'submit':
-        $controllerInstance = new Submit();
-        break;
-    case 'restore':
-        $controllerInstance = new RestorePassword();
-        break;
-    case 'add-product':
-        $controllerInstance = new AgregarProducto();
-        break;
-    default:
-        $controllerInstance = new Landing(); // Controlador por defecto
-        break;
+// Map view names to actual file paths
+$view = [
+    'index' => 'Views.Index.html',
+    'login' => 'Views.Login.html',
+    'register' => 'Views.Register_User.html',
+    'restore' => 'Views.Restore_password.html',
+    'add_product' => 'Views.Add_product.html',
+    'edit_product' => 'Views.Edit_product.html',
+    'delete_product' => 'Views.Delete_product.html',
+    'admin' => 'Views.Admin.html',
+];
+
+// If the requested page exists in the array, load it; otherwise, load index
+if (array_key_exists($page, $view)) {
+    include($view[$page]);
+} else {
+    // If page is not found, you can include a 404 page or redirect to index
+    include('Views.Index.html');
 }
-
-// Llamar al método principal del controlador
-$controllerInstance->main();
+?>

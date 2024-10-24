@@ -2,7 +2,7 @@ const isLoggedIn = false; // Puedes cambiar esto según tu lógica de sesión
 
 // Función para cargar productos
 async function cargarProductos() {
-    const response = await fetch('php/Const.Index.php');
+    const response = await fetch ('php/Const.Index.php');
     const data = await response.json();
 
     const productosDiv = document.getElementById('productos');
