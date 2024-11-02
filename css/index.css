@@ -17,8 +17,7 @@ header {
     color: #fff;
     padding: 20px 0;
     text-align: center;
-    position: fixed;
-    top: 0;
+    position: relative; /* Para alinear el carrito correctamente */
     width: 100%;
     z-index: 1000;
 }
@@ -60,7 +59,7 @@ nav ul li:hover {
 .cart {
     position: fixed;
     left: -300px; /* Comienza fuera de la pantalla a la izquierda */
-    top: 60px; /* Espacio para el header */
+    top: 70px; /* Ajustado para que no se superponga con el header */
     width: 300px;
     background-color: #fff;
     color: #000;
@@ -68,6 +67,7 @@ nav ul li:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transition: left 0.3s ease;
     z-index: 1000;
+    border-radius: 10px; /* Bordes redondeados para el carrito */
 }
 
 .cart.active {
@@ -78,24 +78,26 @@ nav ul li:hover {
 .cart-button {
     position: fixed;
     top: 20px;
-    left: 20px; /* Mueve el botón del carrito al lado izquierdo */
+    right: 20px; /* Cambiado a la derecha para mejor accesibilidad */
     background-color: #7b1dd3;
     color: white;
-    padding: 10px;
+    padding: 10px 15px; /* Ajustado para que sea más cómodo */
     border-radius: 5px;
     cursor: pointer;
     z-index: 1001; /* Asegura que el botón esté por encima del carrito */
+    border: none; /* Sin borde para un diseño más limpio */
 }
 
 /* Botón de cerrar carrito */
 #closeCart {
     background-color: red;
     color: white;
-    padding: 5px;
+    padding: 5px 10px; /* Ajustado para mejor apariencia */
     cursor: pointer;
     border-radius: 5px;
     margin-top: 10px;
     display: inline-block;
+    border: none; /* Sin borde */
 }
 
 /* Main */
@@ -169,6 +171,7 @@ footer {
     background-image: url('img/fond.jpg');
     background-size: cover;
     background-position: center;
+    justify-content: end;
     color: #fff;
     text-align: center;
     padding: 10px 0;

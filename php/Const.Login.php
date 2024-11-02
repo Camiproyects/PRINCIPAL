@@ -6,12 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $correo = $_POST['correo'];
     $contrasena = $_POST['contrasena'];
 
-    // Validación básica
-    if (empty($correo) || empty($contrasena)) {
-        echo json_encode(['error' => 'Por favor ingresa el correo y la contraseña.']);
-        exit;
-    }
-
     try {
         // Conectar a la base de datos
         $db = DataBase::connection();

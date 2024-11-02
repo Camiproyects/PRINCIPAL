@@ -21,12 +21,11 @@ async function cargarProductos() {
                 <h3>${producto.nombre}</h3>
                 <img src="uploads/${producto.imagen}" alt="${producto.nombre}" style="width:150px; height:150px;">
                 <p>Precio: $${producto.precio}</p>
-                <p>Stock disponible: ${producto.stock}</p>
                 <button class="button" onclick="agregarAlCarrito('${producto.nombre}', 1, ${producto.precio})">Agregar al Carrito</button>
             `;
             productosDiv.appendChild(productoDiv);
         });
-    } else {
+    } else {25
         productosDiv.innerHTML = "No hay productos disponibles.";
     }
 }

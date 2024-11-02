@@ -77,3 +77,49 @@ function VerificarFormulario() {
         icon: "success"
     });
 }
+function VerificarFormulario() {
+    const form = document.getElementById('registro-form');
+
+    // Prevenir el envío del formulario por defecto
+    form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevenir el envío
+
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Si el registro fue exitoso, redirigir a la página inicial
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Éxito',
+                    text: data.success
+                }).then(() => {
+                    window.location.href = 'Views.index.html'; // Redirigir
+                });
+            } else {
+                // Mostrar error
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.error
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un problema al procesar tu solicitud.'
+            });
+        });
+    });
+}
+
+// Llamar a la función al cargar el script
+document.addEventListener('DOMContentLoaded', VerificarFormulario);

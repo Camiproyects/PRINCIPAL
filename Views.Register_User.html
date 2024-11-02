@@ -15,16 +15,22 @@
     <section id="formulario">
         <form id="registro-form" action="php\Const.Register_User.php" method="POST">
             <div class="input-group">
-                <input class="caja" type="text" name="nombres" id="nombres" placeholder="Nombres Y Apellidos" required>
+                <input class="caja" type="text" name="nombres" id="nombres" placeholder="Un Solo Nombre Y Un Apellido" required>
             </div>
             <div class="input-group">
                 <input class="caja" type="email" name="correo" id="correo" placeholder="Correo Electrónico" required>
             </div>
             <div class="input-group">
-                <input class="caja" type="password" name="clave" id="clave" placeholder="Contraseña" required minlength="7" maxlength="10">
+                <input class="caja" type="password" name="clave" id="clave" placeholder="Contraseña" required minlength="7">
             </div>
             <div class="input-group">
-                <input class="caja" type="password" name="confirmarClave" id="confirmar_Clave" placeholder="Confirmar Contraseña" required minlength="7" maxlength="10">
+                <input class="caja" type="password" name="confirmarClave" id="confirmar_Clave" placeholder="Confirmar Contraseña" required minlength="7">
+            </div>
+            <div class="input-group">
+                <input class="caja" type="text" name="direccion" id="direccion" placeholder="direccion" required minlength="7">
+            </div>
+            <div class="input-group">
+                <input class="caja" type="number" name="telefono" id="telefono" placeholder="direccion" required minlength="10" maxlength="10">
             </div>
             <div class="List">
             <p>Recueda tienes la opcion de agreagar un metodo de pago despues...</p>
