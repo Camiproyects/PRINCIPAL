@@ -5,51 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de productos</title>
     <link rel="stylesheet" href="css/index.css">
-    <script src="js/index.js"></script>
+    <script src="js/index.js" defer></script>
 </head>
 <body>
     <header>
         <h1>Tienda de Ropa</h1>
         <div id="sidebar" class="sidebar">
             <button class="closebtn" onclick="closeNav()">×</button>
-            <nav>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li>
-                        <a href="#">Hombres</a>
-                        <ul>
-                            <li><a href="#">Camisas</a></li>
-                            <li><a href="#">Pantalones</a></li>
-                            <li><a href="#">Accesorios</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Mujeres</a>
-                        <ul>
-                            <li><a href="#">Vestidos</a></li>
-                            <li><a href="#">Blusas</a></li>
-                            <li><a href="#">Accesorios</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Niños</a>
-                        <ul>
-                            <li><a href="#">Ropa</a></li>
-                            <li><a href="#">Juguetes</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
+            <ul>
+                <li><a href="#home">Inicio</a></li>
+                <li>
+                    <select onchange="redirectToLink(this.value)">
+                        <option value="#">Selecciona una opción</option>
+                        <optgroup label="Hombres">
+                            <option value="#Camisas_Hombres">Camisas</option>
+                            <option value="#Hombres">Hombres</option>
+                            <option value="#Pantalones_Hombres">Pantalones</option>
+                            <option value="#Accesorios_Hombres">Accesorios</option>
+                        </optgroup>
+                    </select>
+                </li>
+                <li>
+                    <select onchange="redirectToLink(this.value)">
+                        <optgroup label="Mujeres">
+                            <option value="#Mujeres_Vestidos">Vestidos</option>
+                            <option value="#Mujeres_Blusas">Blusas</option>
+                            <option value="#Mujeres_Accesorios">Accesorios</option>
+                        </optgroup>
+                    </select>
+                </li>
+                <li>
+                    <select onchange="redirectToLink(this.value)">
+                        <optgroup label="Niños">
+                            <option value="#Nina">Niña</option>
+                            <option value="#Nino">Niño</option>
+                        </optgroup>
+                    </select>
+                </li>
+                <div id="listaCompras">
+                    <h2>Lista de Compras</h2>
+                    <ul id="comprasList"></ul>
+                </div>
+            </ul>
         </div>
-        <div id="main">
+                <div id="main">
             <button class="openbtn" onclick="openNav()">☰</button>
         </div>
     </header>
-
     <!-- Productos -->
     <div id="productos"></div>
-
-    <!-- Pie de página -->
+    <!-- lista de productos -->
     <footer>
         <p>© 2024, <a href="#">Términos y condiciones</a></p>
     </footer>

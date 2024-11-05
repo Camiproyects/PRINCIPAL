@@ -1,29 +1,66 @@
 /* General */
 body {
-    font-family: Arial, sans-serif;
+    background-image: url('img/gratis-png-cuatro-mujeres-visten-modelo-de-dibujo-modelo-de-dibujo.jpg');
+    background-size: 30%;
+    background-position: center;
+    font-family: 'Baguet Script', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: rgb(255, 255, 255);
 }
 
-/* Barra lateral */
+/* Header */
+header {
+    background-image: url('img/fond.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: relative; /* Para alinear el carrito correctamente */
+    width: 100%;
+    z-index: 1000;
+}
+
+header h1 {
+    margin: 0;
+    padding: 10px;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+/* Main */
+main {
+    padding: 100px 20px; /* Espacio para el header */
+}
+
+/* Sidebar */
 .sidebar {
     height: 100%;
     width: 0;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #333;
+    background-color: rgb(13, 59, 111);
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+}
+
+.sidebar ul {
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 15px;
 }
 
 .sidebar a {
     padding: 12px 24px;
     text-decoration: none;
     font-size: 18px;
-    color: #818181;
+    color: white;
     display: block;
     transition: 0.3s;
 }
@@ -37,17 +74,16 @@ body {
     top: 10px;
     right: 20px;
     font-size: 36px;
-    color: #818181;
+    color: white;
     cursor: pointer;
     background: none;
     border: none;
 }
 
-/* Botón para abrir la barra lateral */
 .openbtn {
     font-size: 18px;
     cursor: pointer;
-    background-color: #333;
+    background-color: rgb(13, 59, 111);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -59,49 +95,125 @@ body {
 }
 
 .openbtn:hover {
-    background-color: #444;
+    background-color: white;
 }
 
-/* Encabezado */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
+/* Dropdowns in Sidebar */
+.sidebar select {
+    background-color: rgb(13, 59, 111);
+    color: white;
+    border: 1px solid white;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 90%; /* Centered within sidebar */
+    margin: 0 auto;
+    display: block;
+}
+
+.sedebar li{
+    padding: 20px 30px;
+}
+
+.sidebar select option {
+    background-color: white;
+    color: rgb(13, 59, 111);
+}
+
+.sidebar select:hover {
+    opacity: 0.9; /* Subtle hover effect */
+}
+
+.sidebar .listaCompras{
+    padding: 20px 30px;
+    color: white;
+    font-size: 16px;
     text-align: center;
-    position: relative;
-    width: 100%;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 24px;
+/* Productos */
+#productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.producto h2{
+    font-size: 16px;
+    text-align: center;
+    padding: 5px 5px;
+    color: white;
+
+}
+
+.producto {
+    background-color: #7767a5d5;
+    border: 1px solid #7867a58a;
+    max-width: 300px;
+    border-radius: 25px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    width: calc(33.333% - 40px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.producto:hover {
+    transform: scale(1.05);
+}
+
+.producto img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #7b1dd3;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}
+
+.producto h3 {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #fff;
+}
+
+.producto p {
+    color: #fff;
+    font-size: 16px;
     font-weight: bold;
 }
 
-/* Navegación */
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* Botón de compra */
+.button {
+    background-color: #7b1dd3;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
-nav ul li {
-    margin: 5px 0;
+.button:hover {
+    background-color: #5a0fa3;
 }
 
-nav ul ul {
-    padding-left: 15px;
-}
-
-/* Pie de página */
+/* Footer */
 footer {
-    background-color: #333;
+    background-image: url('img/fond.jpg');
+    background-size: cover;
+    background-position: center;
+    justify-content: end;
     color: #fff;
     text-align: center;
     padding: 10px 0;
+    bottom: 0;
+    width: 100%;
 }
 
 footer a {
     color: white;
-    text-decoration: none;
 }

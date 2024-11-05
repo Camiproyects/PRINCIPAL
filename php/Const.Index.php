@@ -8,7 +8,7 @@ $response = [];
 try {
     $db = DataBase::connection();
     // Modificamos la consulta para traer el campo imagen
-    $sql = "SELECT nombre, precio, imagen FROM producto";
+    $sql = "SELECT id_producto, nombre, precio, imagen FROM producto";
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $response['productos'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
