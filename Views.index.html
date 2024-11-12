@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de productos</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- estilo modificado -->
     <link rel="stylesheet" href="css/index.css">
+    <!-- llamado a java sacript -->
     <script src="js/index.js" defer></script>
 </head>
 <body>
@@ -13,7 +19,7 @@
         <div id="sidebar" class="sidebar">
             <button class="closebtn" onclick="closeNav()">×</button>
             <ul>
-                <li><a href="#home">Inicio</a></li>
+                <li><a href="#home">Menú</a></li>
                 <li>
                     <select onchange="redirectToLink(this.value)">
                         <option value="#">Selecciona una opción</option>
@@ -43,13 +49,17 @@
                     </select>
                 </li>
                 <div id="listaCompras">
-                    <h2>Lista de Compras</h2>
+                    <h2>Tú Compra</h2>
                     <ul id="comprasList"></ul>
+                </div>
+                <div id="totalCompra">Total: $0.00
+                    <button id="btnComprar" class="button" onclick="comprar()">Comprar</button>
                 </div>
             </ul>
         </div>
-                <div id="main">
-            <button class="openbtn" onclick="openNav()">☰</button>
+        <div id="main">
+            <button class="bi-cart-fill me-1" onclick="openNav()">Menú</button>
+            <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> -->
         </div>
     </header>
     <!-- Productos -->

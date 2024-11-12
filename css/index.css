@@ -1,6 +1,6 @@
 /* General */
 body {
-    background-image: url('img/gratis-png-cuatro-mujeres-visten-modelo-de-dibujo-modelo-de-dibujo.jpg');
+    background-image: rgb(245, 245, 220);
     background-size: 30%;
     background-position: center;
     font-family: 'Baguet Script', sans-serif;
@@ -80,7 +80,7 @@ main {
     border: none;
 }
 
-.openbtn {
+.bi-cart-fill.me-1 {
     font-size: 18px;
     cursor: pointer;
     background-color: rgb(13, 59, 111);
@@ -94,15 +94,16 @@ main {
     transition: background-color 0.3s ease;
 }
 
-.openbtn:hover {
+.bi-cart-fill.me-1:hover {
     background-color: white;
+    color: rgb(13, 59, 111);
 }
 
 /* Dropdowns in Sidebar */
 .sidebar select {
     background-color: rgb(13, 59, 111);
     color: white;
-    border: 1px solid white;
+    border: 1px rgb(13, 59, 111);
     padding: 10px;
     font-size: 16px;
     border-radius: 4px;
@@ -112,8 +113,8 @@ main {
     display: block;
 }
 
-.sedebar li{
-    padding: 20px 30px;
+.sidebar li {
+    padding: 5px 10px;
 }
 
 .sidebar select option {
@@ -125,7 +126,7 @@ main {
     opacity: 0.9; /* Subtle hover effect */
 }
 
-.sidebar .listaCompras{
+.sidebar .listaCompras {
     padding: 20px 30px;
     color: white;
     font-size: 16px;
@@ -140,12 +141,11 @@ main {
     gap: 20px;
 }
 
-.producto h2{
+.producto h2 {
     font-size: 16px;
     text-align: center;
     padding: 5px 5px;
     color: white;
-
 }
 
 .producto {
@@ -185,8 +185,83 @@ main {
     font-weight: bold;
 }
 
-/* Botón de compra */
-.button {
+/* Botón de "Agregar al carrito" */
+button#Compra {
+    background-color: #7b1dd3; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    font-family: 'Arial', sans-serif;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+button#Compra:hover {
+    background-color: #5a0fa3; /* Color de fondo cuando el botón es hover */
+    transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+}
+
+button#Compra:active {
+    background-color: #4a0f7d; /* Color de fondo al hacer clic */
+    transform: scale(0.98); /* Reduce ligeramente el tamaño al hacer clic */
+}
+
+/* Botón de "Comprar" */
+#btnComprar {
+    background-color: rgb(13, 59, 111); /* Fondo morado */
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 25px;
+    font-size: 18px;
+    display: block;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    border: none;
+    margin: 20px 0;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#btnComprar.button{
+    color: white;
+    background-color: rgb(13, 59, 111);
+    padding: 5px 10px;
+}
+
+#btnComprar:hover {
+    background-color: #5a0fa3;
+    transform: translateY(-5px); /* Eleva ligeramente el botón */
+}
+
+#btnComprar:active {
+    background-color: #4a0f7d;
+    transform: translateY(1px); /* Baja ligeramente el botón cuando se hace clic */
+}
+
+/* Animación de aparición para el botón "Comprar" */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Botón de "Total compra" */
+#totalCompra {
+    font-size: 18px;
+    font-weight: bold;
+    color: #7b1dd3;
+    margin-bottom: 10px;
+}
+
+#totalCompra .button {
     background-color: #7b1dd3;
     border: none;
     padding: 10px 20px;
@@ -197,13 +272,13 @@ main {
     transition: background-color 0.3s ease;
 }
 
-.button:hover {
+#totalCompra .button:hover {
     background-color: #5a0fa3;
 }
 
 /* Footer */
 footer {
-    background-image: url('img/fond.jpg');
+    background-image: rgb(13, 59, 111);
     background-size: cover;
     background-position: center;
     justify-content: end;
