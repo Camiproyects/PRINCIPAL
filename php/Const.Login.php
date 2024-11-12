@@ -1,55 +1,54 @@
 <?php
 session_start();
-include 'DataBase.php'; // Incluye tu archivo de conexión a la base de datos
+include 'DataBase.php'; // Asegúrate de tener tu archivo de conexión a la base de datos
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $correo = $_POST['correo'];
-    $contrasena = $_POST['contrasena'];
+$response = [];
 
-    try {
-        // Conectar a la base de datos
-        $db = DataBase::connection();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtener los datos del formulario
+    $correo = $_POST['correo'] ?? '';
+    $contrasena = $_POST['contrasena'] ?? '';
 
-        // Preparar la consulta para verificar el inicio de sesión
-        $sql = "SELECT p.*, p.password_hash, c.rol_id 
-                FROM persona p 
-                JOIN cliente c ON p.id = c.id 
-                WHERE p.email = :email";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':email', $correo);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Validar si los campos están vacíos
+    if (empty($correo) || empty($contrasena)) {
+        $response['error'] = "Por favor ingresa ambos campos: correo y contraseña.";
+    } else {
+        try {
+            // Establecer la conexión a la base de datos
+            $db = DataBase::connection();
 
-        if ($user) {
-            // Verificar la contraseña (asumiendo que password_hash almacena la contraseña encriptada en persona)
-            if (password_verify($contrasena, $user['password_hash'])) {
-                // Contraseña correcta: establecer variables de sesión
+            // Consulta SQL para buscar al usuario por correo electrónico
+            $sql = "SELECT id, nombre, apellido, email, password_hash, rol_id 
+                    FROM persona WHERE email = :correo";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':correo', $correo);
+            $stmt->execute();
+            
+            // Verificar si el usuario existe
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user && password_verify($contrasena, $user['password_hash'])) {
+                // Si la contraseña es correcta, iniciar sesión
                 $_SESSION['usuario'] = $user['id'];
-                $_SESSION['correo'] = $user['email'];
+                $_SESSION['nombre'] = $user['nombre'];
+                $_SESSION['apellido'] = $user['apellido'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['rol_id'] = $user['rol_id'];
 
-                // Verificar el rol_id para la redirección
-                if ($user['rol_id'] == 1) {
-                    // Cliente: redirigir a la página principal
-                    echo json_encode(['success' => 'Inicio de sesión exitoso', 'redirect' => 'index.php']);
-                } elseif ($user['rol_id'] == 2) {
-                    // Empleado: redirigir al panel de administración
-                    echo json_encode(['success' => 'Inicio de sesión exitoso', 'redirect' => 'Views.Admin.html']);
-                } else {
-                    echo json_encode(['error' => 'Rol no reconocido.']);
-                }
+                // Respuesta exitosa
+                $response['success'] = "Bienvenido, " . $user['nombre'];
             } else {
-                // Si la contraseña es incorrecta, imprime el hash almacenado y la contraseña ingresada para depuración
-                echo json_encode([
-                    'error' => 'Contraseña incorrecta.',
-                    'stored_hash' => $user['password_hash'],
-                    'input_password' => $contrasena
-                ]);
+                // Si las credenciales no son correctas
+                $response['error'] = "Correo o contraseña incorrectos.";
             }
-        } else {
-            echo json_encode(['error' => 'El correo no está registrado.']);
+        } catch (PDOException $e) {
+            $response['error'] = "Error en la conexión a la base de datos: " . $e->getMessage();
         }
-    } catch (PDOException $e) {
-        echo json_encode(['error' => 'Error en la consulta: ' . $e->getMessage()]);
     }
+} else {
+    $response['error'] = "Método no permitido.";
 }
+
+// Devolver la respuesta en formato JSON
+echo json_encode($response);
 ?>
