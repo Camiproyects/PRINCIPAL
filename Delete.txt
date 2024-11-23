@@ -11,9 +11,6 @@ Cambios De La Base De datos(con este esquema y volcado de datos la estoy usando 
 
 tienda_ropa.sql
 
+Tema posiblemente para aplicar en el proyecto matematicas 
 
-
-
-
-
-7777///8888((()))
+Estadisticas
